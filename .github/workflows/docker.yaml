@@ -15,11 +15,11 @@ on:
       registry:
         required: false
         type: string
-      REGISTRY_USERNAME:
+      registry_username:
         required: true  
         type: string      
     secrets:
-      REGISTRY_PASSWORD:
+      registry_password:
         required: true
 
 env:
@@ -34,13 +34,13 @@ jobs:
     steps:
       - name: Check secret
         env:
-          MY_SECRET: ${{ secrets.REGISTRY_PASSWORD }}
+          MY_SECRET: ${{ secrets.registry_password }}
         if: ${{ env.MY_SECRET == '' }}
         run: echo "MY_SECRET não existe"
 
       - name: Secret not found
         env:
-          MY_SECRET: ${{ secrets.REGISTRY_PASSWORD }}
+          MY_SECRET: ${{ secrets.registry_password }}
         if: ${{ env.MY_SECRET != '' }}
         run: echo "MY_SECRET existe"
 
@@ -50,7 +50,7 @@ jobs:
           VAR1: ${{ inputs.image_name }}
           VAR2: ${{ inputs.dockerfile }}
           VAR3: ${{ inputs.registry }}
-          VAR4: ${{ inputs.REGISTRY_USERNAME }}
+          VAR4: ${{ inputs.registry_username }}
 
         run: |
           missing=0
