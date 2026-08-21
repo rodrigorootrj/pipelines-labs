@@ -19,7 +19,6 @@ on:
         required: true  
         type: string      
     secrets:
-
       REGISTRY_PASSWORD:
         required: true
 
@@ -37,7 +36,7 @@ jobs:
         env:
           MY_SECRET: ${{ secrets.REGISTRY_PASSWORD }}
         if: ${{ env.MY_SECRET == '' }}
-        run: echo "MY_SECRET não existe"
+        run: echo "MY_SECRET existe"
 
       - name: Secret not found
         env:
