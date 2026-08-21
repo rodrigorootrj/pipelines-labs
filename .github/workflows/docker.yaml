@@ -36,13 +36,13 @@ jobs:
         env:
           MY_SECRET: ${{ secrets.REGISTRY_PASSWORD }}
         if: ${{ env.MY_SECRET == '' }}
-        run: echo "MY_SECRET existe"
+        run: echo "MY_SECRET não existe"
 
       - name: Secret not found
         env:
           MY_SECRET: ${{ secrets.REGISTRY_PASSWORD }}
         if: ${{ env.MY_SECRET != '' }}
-        run: echo "MY_SECRET não existe"
+        run: echo "MY_SECRET existe"
 
 
       - name: Validate variables
