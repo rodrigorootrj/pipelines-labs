@@ -19,6 +19,8 @@ on:
       registry_username:
         required: true  
         type: string  
+        default: rodrigorootrj
+
             
     secrets:
       registry_password:
