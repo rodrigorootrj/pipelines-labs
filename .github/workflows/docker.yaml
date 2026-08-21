@@ -18,9 +18,7 @@ on:
       REGISTRY_USERNAME:
         required: true  
         type: string      
-
     secrets:
-
 
       REGISTRY_PASSWORD:
         required: true
@@ -28,6 +26,7 @@ on:
 env:
   ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  NODE_OPTIONS: "--no-deprecation"
 
 jobs:
   build-push:
