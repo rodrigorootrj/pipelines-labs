@@ -33,6 +33,41 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check secret
+        env:
+          MY_SECRET: ${{ secrets.REGISTRY_PASSWORD }}
+        if: ${{ env.MY_SECRET == '' }}
+        run: echo "MY_SECRET não existe"
+
+      - name: Secret not found
+        env:
+          MY_SECRET: ${{ secrets.REGISTRY_PASSWORD }}
+        if: ${{ env.MY_SECRET != '' }}
+        run: echo "MY_SECRET não existe"
+
+
+      - name: Validate variables
+        env:
+          VAR1: ${{ inputs.image_name }}
+          VAR2: ${{ inputs.dockerfile }}
+          VAR3: ${{ inputs.registry }}
+          VAR4: ${{ inputs.REGISTRY_USERNAME }}
+
+        run: |
+          missing=0
+
+          for var in VAR1 VAR2 VAR3 VAR4; do
+            if [ -z "${!var}" ]; then
+              echo "ERROR: $var não definida"
+              missing=1
+            else
+              echo "OK: $var definida"
+            fi
+          done
+
+          exit $missing
+
+
       - name: Checkout
         uses: actions/checkout@v4
 
