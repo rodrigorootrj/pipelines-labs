@@ -15,10 +15,12 @@ on:
       registry:
         required: true
         type: string
+      REGISTRY_USERNAME:
+        required: true  
+        type: string      
 
     secrets:
-      REGISTRY_USERNAME:
-        required: true
+
 
       REGISTRY_PASSWORD:
         required: true
