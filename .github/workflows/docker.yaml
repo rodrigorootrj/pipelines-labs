@@ -48,9 +48,9 @@ jobs:
         run: |
           docker build \
             -f ${{ inputs.dockerfile }} \
-            -t ${{ inputs.registry }}/${{ inputs.image_name }}:${{ github.sha }} .
+            -t ${{ inputs.image_name }} .
 
       - name: Push
         run: |
           docker push \
-            ${{ inputs.registry }}/${{ inputs.image_name }}:${{ github.sha }}
+            ${{ inputs.image_name }}
