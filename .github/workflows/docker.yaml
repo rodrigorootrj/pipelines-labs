@@ -15,9 +15,11 @@ on:
       registry:
         required: false
         type: string
+
       registry_username:
         required: true  
-        type: string      
+        type: string  
+            
     secrets:
       registry_password:
         required: true
