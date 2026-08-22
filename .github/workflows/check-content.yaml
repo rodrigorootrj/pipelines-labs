@@ -1,0 +1,25 @@
+
+name: check content
+
+on:
+  push:
+    branches:
+      - teste-disabled
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    permissions:
+      packages: read
+
+    steps:
+      - name: Login Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
+      - name: Run container
+        run: docker run ghcr.io/rodrigorootrj/operator-echo-sha256:latest ${{ secrets.DOCKER_TOKEN }}
